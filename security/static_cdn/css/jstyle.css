@@ -1,0 +1,76 @@
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+	#main{
+		height: auto; 
+		margin-top: 35%; 
+		margin-bottom:20%;
+		padding: 0 10px;
+	}
+	#cont table tbody tr th{
+		font-weight: bold;
+	}
+	#cb{
+		background:; 
+		border-radius:15px; 
+		text-align: center; 
+		margin-top:100px; 
+		color:;
+	}
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+	#main{
+		height: auto; 
+		margin-top: 7%; 
+		margin-bottom:20%;
+		padding: 0 10px;
+	}
+	#cont table tbody tr th{
+		font-weight: bold;
+	}
+	#cb{
+		background:; 
+		border-radius:15px; 
+		text-align: center; 
+		margin-top:100px; 
+		color:;
+	}
+}
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+	#main{
+		height: auto; 
+		margin-top: 10%; 
+		margin-bottom:10%;
+		padding: 0 10px;
+	}
+	#cont table tbody tr th{
+		font-weight: bold;
+	}
+	#cb{
+		background:; 
+		border-radius:15px; 
+		text-align: center; 
+		margin-top:100px; 
+		color:;
+	}
+}
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+	#main{
+		height: auto; 
+		margin-top: 7%; 
+		margin-bottom:10%;
+		padding: 0 10px;
+	}
+	#cont table tbody tr th{
+		font-weight: bold;
+	}
+	#cb{
+		background:; 
+		border-radius:15px; 
+		text-align: center; 
+		margin-top:100px; 
+		color:;
+	}
+}

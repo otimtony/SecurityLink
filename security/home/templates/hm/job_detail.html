@@ -1,0 +1,98 @@
+{% extends 'content_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+
+{% block head %}
+{% endblock%}
+
+	<title></title>
+</head>
+<body>
+	
+{% block content %}
+
+<div class=" container" style="" id='main'>
+	<div class="row">
+		<div class="col-md-8" id='cont'>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<th scope="row" style=""><p>Job Title:</p></th>
+						<td><p>{{job.jobTitle}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Country of employment:</p></th>
+						<td><p>{{job.location}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Number of workers: </p></th>
+						<td><p>{{job.workers}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>City:</p></th>
+						<td><p>{{job.city}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Salary: </p></th>
+						<td><p>{{job.wage}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Work hours:</p></th>
+						<td><p>{{job.work_hours}}hrs</p><span><p>Overtime: {{job.overtime}}hrs</p></span></td>
+						
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Age bracket:</p></th>
+						<td><p>Male: {{job.age_male_min}}yrs to {{job.age_male_max}}yrs</p>
+							<p>Female: {{job.age_female_min}}yrs to {{job.age_female_max}}yrs</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Accomodation:</p></th>
+						<td><p>{{job.accomodation}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Insurance:</p></th>
+						<td>{{job.medical}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Transport to and from work:</p></th>
+						<td>{{job.transport}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Level of education:</p></th>
+						<td>{{job.educ_level}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Description:</th>
+						<td>{{job.job_desc}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="{% url 'home:jobmart' %}"><button class="btn btn-danger">View all jobs</button></a>
+		</div>
+		<div class="col-md-4">
+			{% if status == 1 %}
+				<div class="card-body" style="text-align: center;">
+					<i class="fas fa-times-circle" style="font-size: 50px; color:red;"></i>
+					<br>
+					<h1>Application closed</h1>
+				</div>
+			{% else%}
+				<div class="card-body" id='cb' style="">
+					<i class="fas fa-envelope-open-text" style="font-size: 50px"></i>
+					<br>
+					<h3>Application open</h3>
+					<h5>Deadline: {{job.job_exp_date.date}}</h5>
+					<a href="{% url 'home:register' %}"><button type='button' class="btn btn-outline-success" style="border-radius: 25px;">Register</button></a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+</body>
+</html>

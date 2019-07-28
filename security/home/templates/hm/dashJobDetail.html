@@ -1,0 +1,89 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+<div class="content container" style="margin-top: 7%;">
+	<div class="row mt-4" style="">
+			<div class="col-md-2">
+				<a href="{% url 'home:jobs' %}">
+					<button class="btn btn-warning" style="border-radius: 25px;" title="Back to jobs"><i class="now-ui-icons arrows-1_minimal-left"></i></button>
+				</a>
+			</div>
+			<div class="col-md-8"></div>
+			<div class="col-md-2">
+				<a href="{% url 'home:job_update' jobdtl.id%}">
+					<button class="btn btn-success" style="border-radius: 25px;" title="Back to jobs">Edit Job</button>
+				</a>
+			</div>
+		</div>
+	<div class="row">
+		<div class="col-md-10 mx-auto">
+			<h3 style="text-decoration: underline;">Details</h3>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<th scope="row" style="width: 50%"><p>Job Title:</p></th>
+						<td><p>{{jobdtl.jobTitle}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Country of employment:</p></th>
+						<td><p>{{jobdtl.location}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Number of workers: </p></th>
+						<td><p>{{jobdtl.workers}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>City:</p></th>
+						<td><p>{{jobdtl.city}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Salary: </p></th>
+						<td><p>{{jobdtl.wage}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Work hours:</p></th>
+						<td><p>{{jobdtl.work_hours}}hrs</p><span><p>Overtime: {{jobdtl.overtime}}hrs</p></span></td>
+						
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Age bracket:</p></th>
+						<td><p>Male: {{jobdtl.age_male_min}}yrs to {{jobdtl.age_male_max}}yrs</p>
+							<p>Female: {{jobdtl.age_female_min}}yrs to {{jobdtl.age_female_max}}yrs</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Accomodation:</p></th>
+						<td><p>{{jobdtl.accomodation}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Insurance:</p></th>
+						<td>{{jobdtl.medical}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Transport to and from work:</p></th>
+						<td>{{jobdtl.transport}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Level of education:</p></th>
+						<td>{{jobdtl.educ_level}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Description:</th>
+						<td>{{jobdtl.job_desc}}</td>
+					</tr>
+				</tbody>
+			</table>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+</body>
+</html>

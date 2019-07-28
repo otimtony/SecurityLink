@@ -1,0 +1,60 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+	<div class="content" style="margin-top: 7%;">
+		<a href="{% url 'home:add_branch' %}"><button class="btn btn-success"><i class="now-ui-icons ui-1_simple-add" style="padding-right:10px; "></i>Add Branch</button></a>
+
+		{% if messages %}
+            <div class="messages mx-auto" style=" background-color: orange; color: white; width:300px; text-align:center;">
+                {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style=' padding:7px;'>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+        	{% for b in brnch %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div style="float: right; padding:5px;">
+                                  <a href="{% url 'home:del_branch' b.id %}">
+                                    <button type="button" rel="tooltip" title="Delete Branch" class="btn btn-danger btn-round btn-icon" data-original-title="Remove">
+                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                  </button>
+                                </a>
+                                </div>
+                                <div style="float: right; padding:5px;">
+                
+                                <a href="{% url 'home:edit_branch' b.id %}">
+                                    <button type="button" rel="tooltip" title="Edit Branch" class="btn btn-primary btn-round btn-icon" data-original-title="Edit">
+                                      <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                  </button>
+                                </a>
+                                </div>
+                        </div>
+                        <div class="card-body">
+                            <h3>{{b.name}}</h3>
+                            <p>{{b.location}}</p>
+                            <p>{{b.contact}}</p>
+                        </div>
+                        <div class="card-footer">
+                                
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        	
+        </div>		
+        }
+	</div>
+{% endblock %}
+
+</body>
+</html>

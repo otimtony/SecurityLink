@@ -1,0 +1,54 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+	<div class="content" style="margin-top: 7%;">
+		<a href="{% url 'home:add_service' %}"><button class="btn btn-success">Add Service</button></a>
+
+		{% if messages %}
+            <div class="messages mx-auto" style=" background-color: orange; color: white; width:300px; text-align:center;">
+                {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style=' padding:7px;'>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+        	{% for r in task %}
+        		<div class="col-md-6 mx-auto">
+        		<div class="card">
+        			<div class="card-header">
+        				<a href="{% url 'home:del_service' r.id %}">
+                                    <button type="button" rel="tooltip" title="Delete Service" class="btn btn-danger btn-round btn-icon" data-original-title="Remove">
+                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                  </button>
+                                </a>
+
+                                <a href="{% url 'home:edit_service' r.id%}">
+                                    <button type="button" rel="tooltip" title="Edit Service" class="btn btn-primary btn-round btn-icon" data-original-title="Edit">
+                                      <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                  </button>
+                                </a>
+        			</div>
+        			<div class="card-body">
+        				<h3>{{r.name}}</h3>
+                        <br>
+                        <p>{{r.description}}</p>
+
+        			</div>
+        			<div class="card-footer"></div>
+        		</div>
+        	</div>
+        	{% endfor %}
+        	
+        </div>		
+	</div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+<h1>Test</h1>
+<div class="content">
+	<div class="row" style="padding-top: 20px;">	
+		<div class="col-md-6"><a href="{% url 'home:add_job' %}"><button class="btn btn-success"><i class="now-ui-icons ui-1_simple-add" style="padding-right:10px; "></i>Add new job</button></a></div>
+		<div class="col-md-6"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			{% if messages %}
+              <div class="messages mx-auto" style=" background-color: orange; color: white; width:300px; text-align:center;">
+                  {% for message in messages %}
+                  <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style=' padding:7px;'>{{ message }}</p>
+                  {% endfor %}
+              </div>
+              {% endif %}
+              <br>
+			<div class="card">
+					<div class="card-body">
+					<div class="table-full-width table-responsive">
+			                  <table class="table">
+			                  	<thead class=" text-primary">
+			                  		<th>Title</th>
+			                  		<th>Country</th>
+			                  		<th>No. of workers</th>
+			                  		<th>Description</th>
+			                  		<th></th>
+			                  		<th></th>
+			                  	</thead>
+			                    <tbody>
+			                    	<h3>All job listings</h3>
+			                    	{% for k in jobs %}
+			                      <tr>
+			                        <td class="text-left">{{k.jobTitle}}</td>
+			                        <td class="text-left">{{k.location}}</td>
+			                        <td class="text-left">{{k.workers}}</td>
+			                        <td class="text-left" style="width: 200px;">{{k.job_desc |truncatechars:150}}</td>
+
+			                        <td class="td-actions text-right">
+			                       		<a href="{% url 'home:job_detail' k.id %}">
+			                          		<button type="button" rel="tooltip" title="View Details" class="btn btn-primary btn-round btn-icon btn-icon-mini" data-original-title="Remove">
+			                          			<i class="now-ui-icons files_paper"></i>
+			                          		</button>
+			                          	</a>
+			                          	<a href="{% url 'home:job_update' k.id %}">
+			                        		<button type="button" rel="tooltip" title="Edit Job" class="btn btn-info btn-round btn-icon btn-icon-mini" data-original-title="Edit Task">
+			                            		<i class="now-ui-icons design-2_ruler-pencil"></i>
+			                          		</button>
+			                        	</a>
+
+			                          	<a href="{% url 'home:job_delete' k.id %}">
+			                          		<button type="button" rel="tooltip" title="Delete Job" class="btn btn-danger btn-round btn-icon btn-icon-mini" data-original-title="Remove">
+			                          			<i class="now-ui-icons ui-1_simple-remove"></i>
+			                          		</button>
+			                          	</a>
+			                        </td>
+			                      </tr>
+			                      {% endfor %}
+			                    </tbody>
+			                  </table>
+			</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+</body>
+</html>

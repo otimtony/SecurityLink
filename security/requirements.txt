@@ -1,0 +1,11 @@
+Django==2.2.1
+django-appconf==1.0.3
+django-crispy-forms==1.7.2
+django-imagekit==4.0.2
+django-multiselectfield==0.1.8
+django-widget-tweaks==1.4.3
+pilkit==2.0
+Pillow==6.0.0
+pytz==2019.1
+six==1.12.0
+sqlparse==0.3.0

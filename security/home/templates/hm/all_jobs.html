@@ -1,0 +1,60 @@
+{% extends 'content_base.html'%}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+<div class="row" style="margin-top: 2%; padding: 50px;">
+	<div class="col-lg-12 col-md-12">
+		<div class="row">
+			{% for j in jobs %}
+			<div class="col-lg-6 col-md-6 wow fadeInUp" style="margin-top:3%">
+            <!-- Card -->
+              <div class="card card-cascade wider">
+
+                <!-- Card image -->
+                <div class="view view-cascade" style="background: linear-gradient(to bottom right, #ff3333 50%, #ff99cc 100%);">
+
+                  <!-- Title -->
+                  <h2 class="card-header-title" style="color: #ffff; text-align: center;">{{j.jobTitle}}</h2>
+                  <!-- Text -->
+
+                </div>
+
+                <!-- Card content -->
+                <div class="card-body card-body-cascade ">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>Country of employment: {{j.location}}</p></div>
+                    <div class="col-md-12"><p>Number of workers: {{j.workers}}</p></div>
+                  
+                    <!-- Text -->
+                    <div class="col-md-12" style="border:1px solid #c4c4c6; padding-top: 10px; border-radius: 5px;">
+                      <p><strong>Job description:</strong></p>
+                      <p>{{j.job_desc}}</p>
+                    </div>
+                  </div>
+                  <!-- Link -->
+                  <a href="{% url 'home:detail' j.id %}" class="red-text d-flex flex-row-reverse p-2" style="color: #ff3333;">
+                    <p class="waves-effect waves-light">read more<i class="fa fa-angle-double-right ml-2"></i></p>
+                  </a>
+
+                </div>
+                <!-- Card content -->
+
+              </div>
+            <!-- Card -->
+
+            </div>
+		{% endfor %}
+		</div>
+		
+	</div>
+	
+</div>
+{% endblock %}
+</body>
+</html>

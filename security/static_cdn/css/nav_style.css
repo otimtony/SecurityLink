@@ -1,0 +1,11 @@
+nav>ul{
+	background-color: ;
+	width: 45%
+}
+nav>ul>li{
+	padding:7px; 
+	text-align: center;
+}
+nav>ul>li>a{
+	text-align: center; 
+}

@@ -1,0 +1,149 @@
+{% extends 'content_base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load trans blocktrans from i18n %}
+{% load widget_tweaks %}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>register</title>
+	
+</head>
+<body>
+<h1>register here</h1>
+
+{% block content %}
+<div class="content" style="padding-left: 120px; padding-right: 120px; padding-top: 70px; padding-bottom: 70px; margin-top: 60px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h5 class="card-title"><strong>Your information.</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {% for field in form.visible_fields %}
+                                <div class="">
+                                    <label for="{{ field.surName.id_for_label }}">{{ field.label }}</label>
+                                    {{ field|add_class:'form-control' }}
+                                    {% for error in field.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Submit Form</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content" style="padding-left: 120px; padding-right: 120px; padding-top: 70px; padding-bottom: 70px; margin-top: 60px;">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" class="md-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="text-align:;"><h5 style=" ">Your information.</h5></div>
+                <div class="form-row ">
+                    <div class="form-group col-md-2 mb-0">
+                        <p style="font-size: 20px; color: #767677;">Title: {{ form.title }}</p>
+                    </div>
+                    <div class="form-group col-md-5 mb-0">
+                        {{ form.surName|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-5 mb-0">
+                        {{form.firstName|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">
+                        <p>Gender: {{form.sex}}</p>
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        <p>Marital Status: {{form.maritalStatus}}</p>
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{form.age|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.passportNo|as_crispy_field }}
+                    </div>  
+                    <div class="form-group col-md-3 mb-0">
+                        {{ form.tel|as_crispy_field}}
+                    </div>
+                    <div class="form-group col-md-3 mb-0">
+                        {{ form.email|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.birthPlace|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{form.subCounty|as_crispy_field}}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.county|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">
+                        {{form.village|as_crispy_field}}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{form.residence|as_crispy_field}}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{form.profession|as_crispy_field}}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{form.academic|as_crispy_field}}
+                    </div>
+                </div>
+<br>
+
+<br>
+<div style="text-align:;"><h5>Spouse information</h5></div>
+<div class="form-row">
+<div class="form-group col-md-6 mb-0">{{form.spouse|as_crispy_field}}</div>
+<div class="form-group col-md-6 mb-0">{{form.children|as_crispy_field}}</div>
+</div>
+<br>
+<br>
+<div style="text-align:; padding: 20,0,10,0;"><h5>Parent/Guardian information</h5></div>
+<div class="form-row">
+<div class="form-group col-md-6 mb-0">{{form.fathersName|as_crispy_field}}</div>
+<div class="form-group col-md-6 mb-0">{{form.mothersName|as_crispy_field}}</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-6 mb-0">{{form.parentsDistrict|as_crispy_field}}</div>
+<div class="form-group col-md-6 mb-0">{{form.parentsTel|as_crispy_field}}</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-4 mb-0">{{form.kin|as_crispy_field}}</div>
+<div class="form-group col-md-4 mb-0">{{form.kinDistrict|as_crispy_field}}</div>
+<div class="form-group col-md-4 mb-0">{{form.kinTel|as_crispy_field}}</div>
+</div>
+<button type="submit" class="btn btn-primary">Submit Form</button>
+</form>
+</div>
+</div>
+
+</div>
+		
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'content_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{%block content %}
+
+	<div class="container">
+		<div class="row" style="margin-top: 10%;">
+			{% for q in vids %}
+				<div class="col-md-6">
+					<div class="wrapper">
+                        <div class="youtube" data-embed="{{ q }}">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+					
+				</div>	
+			{% endfor %}	
+		</div>
+	</div>
+
+{% endblock %}
+</body>
+</html>

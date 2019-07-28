@@ -1,0 +1,77 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+<div class="content" style="margin-top: 7%;">
+	<div class="row">
+		<div class="col-md-12">
+				<div class="card">
+		<div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Gender
+                      </th>
+                      <th>
+                        Contact
+                      </th>
+                      <th>
+                        Age
+                      </th>
+                      <th class="text-right">
+                        Marital Status
+                      </th>
+                    </thead>
+                    <tbody>
+                    {% for p in client %}
+                      <tr>
+                        <td>
+                          {{p.title}} {{ p.firstName }} {{ p.surName }}
+                        </td>
+                        <td>
+                          {{ p.sex }}
+                        </td>
+                        <td>
+                          {{ p.tel }}
+                        </td>
+                        <th>
+                          {{ p.age }}
+                        </th>
+                        <td class="text-right">
+                          {{ p.maritalStatus }}
+                        </td>
+                        <td class="td-actions text-right">
+                                <a href="{% url 'home:clientDetail' p.id %}">
+                                  <button type="button" rel="tooltip" title="View Detail" class="btn btn-primary btn-round btn-icon btn-icon-mini" data-original-title="Edit Task">
+                                    <i class="now-ui-icons files_paper"></i>
+                                  </button>
+                                </a>
+                                <a href="{% url 'home:clientDel' p.id %}">
+                                    <button type="button" rel="tooltip" title="Delete Applicant" class="btn btn-danger btn-round btn-icon btn-icon-mini" data-original-title="Remove">
+                                  <i class="now-ui-icons ui-1_simple-remove"></i>
+                                </button>
+                                </a>
+			                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+	</div>		
+		</div>
+	</div>
+</div>
+		
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+<div class="content" style="margin-top: 7%;">
+	<div class="row">
+		<div class="container">
+		<div class="row mt-4" style="">
+			<div class="col-md-2">
+				<a href="{% url 'home:dash_gallery' %}">
+					<button class="btn btn-warning" style="border-radius: 25px;" title="Back to gallery"><i class="now-ui-icons arrows-1_minimal-left"></i></button>
+				</a>
+			</div>
+			<div class="col-md-10"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card mx-auto" style="">
+				<div class="card-body">
+					<form method="post" enctype="multipart/form-data">
+				    	{% csrf_token %}
+				    	{{ form.as_p }}
+				    	<button type="submit">Upload</button>
+				  	</form>	
+				</div>
+			</div>
+			</div>	
+		</div>
+	</div>
+	</div>
+</div>
+		
+{% endblock %}
+</body>
+</html>

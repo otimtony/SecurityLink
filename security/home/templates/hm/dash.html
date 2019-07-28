@@ -1,0 +1,121 @@
+{% extends 'dash_base.html'%}
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+	<div class="content" style="margin-top: 70px;">
+        <div class="row">
+        	
+        			<div class="col-md-6">
+			            <div class="card  card-tasks">
+			              <div class="card-header ">
+			                <h5 class="card-category">Jobs</h5>
+			                <h4 class="card-title">All jobs</h4>
+			              </div>
+			              <div class="card-body ">
+			                <div class="table-full-width table-responsive">
+			                  <table class="table">
+                          <thead class=" text-primary">
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>Deadline</th>
+                          </thead>
+			                    <tbody>
+			                    	{% for job in j %}
+			                      <tr>
+			                        <!-- <td>
+			                          <div class="form-check">
+			                            <label class="form-check-label">
+			                              <input class="form-check-input" type="checkbox" checked>
+			                              <span class="form-check-sign"></span>
+			                            </label>
+			                          </div>
+			                        </td> -->
+			                        <td class="text-left">{{job.jobTitle}}</td>
+                              <td class="text-left">{{job.location}}</td>
+                              <td class="text-riht">{{job.job_exp_date}}</td>
+			                        <td class="">
+			                          <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
+			                            <!-- <i class="now-ui-icons ui-2_settings-90"></i> -->
+			                          </button>
+			                          <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                  
+                                    <!-- <i class="now-ui-icons ui-1_simple-remove"></i> -->
+                                  
+			                          </button>
+			                        </td>
+			                      </tr>
+			                      {% endfor %}
+			                    </tbody>
+			                  </table>
+			                </div>
+			              </div>
+			              <div class="card-footer ">
+			                <hr>
+			                <div class="stats">
+			                  <!-- <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago -->
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+        	
+
+        	
+
+        			<div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-category">Registration</h5>
+                <h4 class="card-title"> Newly registered</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Email
+                      </th>
+                      <th class="text-right">
+                        Tel
+                      </th>
+                      
+                    </thead>
+                    <tbody>
+                    {% for reg in r %}
+                      <tr>
+                        <td>
+                          {{rgstn}}
+                        </td>
+                        <td>
+                          {{reg.email}}
+                        </td>
+                        <td class="text-right">
+                          {{reg.tel}}
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer">
+              	<hr>
+                <div class="stats">
+                  <!-- <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago -->
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+	<div class="content" style="margin-top: 7%;">
+		<a href="{% url 'home:add_employer' %}"><button class="btn btn-success">Add Client</button></a>
+
+		{% if messages %}
+            <div class="messages mx-auto" style=" background-color: orange; color: white; width:300px; text-align:center;">
+                {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style=' padding:7px;'>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+        	{% for e in emp %}
+        		<div class="col-md-6 mx-auto">
+        		<div class="card">
+        			<div class="card-header">
+        				<a href="{% url 'home:del_employer' e.id%}">
+                                    <button type="button" rel="tooltip" title="Delete Client" class="btn btn-danger btn-round btn-icon" data-original-title="Remove">
+                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                  </button>
+                                </a>
+        			</div>
+        			<div class="card-body" style="text-align: center;">
+        				<img src="{{e.logo.url}}"style="max-height: 300px; max-width: 350px;">
+        				
+        			</div>
+        			<div class="card-footer" style="text-align:center;"><h4>{{e.name}}</h4></div>
+        		</div>
+        	</div>
+        	{% endfor %}
+        	
+        </div>		
+	</div>
+{% endblock %}
+
+</body>
+</html>

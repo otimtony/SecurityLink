@@ -1,0 +1,127 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+<div class="content container" style="margin-top: 7%;">
+	<div class="row mt-4" style="">
+			<div class="col-md-2">
+				<a href="{% url 'home:clientelle' %}">
+					<button class="btn btn-warning" style="border-radius: 25px;" title="Back to jobs"><i class="now-ui-icons arrows-1_minimal-left"></i></button>
+				</a>
+			</div>
+			<div class="col-md-8"></div>
+			<div class="col-md-2">
+				
+			</div>
+		</div>
+	<div class="row">
+		<div class="col-md-10 mx-auto">
+			<div class="card">
+				<div class="card-body">
+					<h3 style="text-decoration: underline;">Details</h3>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<th scope="row" style="width: 50%"><p>Name: </p></th>
+						<td><p>{{clientdtl.title}} {{clientdtl.surName}} {{clientdtl.firstName}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Age: </p></th>
+						<td><p>{{clientdtl.age}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Sex: </p></th>
+						<td><p>{{clientdtl.sex}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Marital Status: </p></th>
+						<td><p>{{clientdtl.maritalStatus}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Contact: </p></th>
+						<td><p> Tel: {{clientdtl.tel}} </p>
+							<p>Email: {{ clientdtl.email}}</p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>District of birth: </p></th>
+						<td><p>{{clientdtl.birthPlace}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>County: </p></th>
+						<td><p>{{clientdtl.county}}</p></td>
+						
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Sub County: </p></th>
+						<td><p>{{clientdtl.subCounty}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Village: </p></th>
+						<td><p>{{clientdtl.village}}</p></td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Residence: </p></th>
+						<td>{{cleintdtl.residence}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Profession</p></th>
+						<td>{{clientdtl.profession}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style=""><p>Level of education:</p></th>
+						<td>{{clientdtl.academic}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Name of spouse: </th>
+						<td>{{clientdtl.spouse}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Number of children: </th>
+						<td>{{clientdtl.children}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Fathers name: </th>
+						<td>{{clientdtl.fathersName}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Mothers name: </th>
+						<td>{{clientdtl.mothersName}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">District of residence: </th>
+						<td>{{clientdtl.parentsDistrict}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Contact: </th>
+						<td>{{clientdtl.parentsTel}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">Next of Kin: </th>
+						<td>{{clientdtl.kin}}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="">District of residence: </th>
+						<td>{{clientdtl.kinDistrict}}</td>
+					</tr><tr>
+						<th scope="row" style="">Contact: </th>
+						<td>{{clientdtl.kinTel}}</td>
+					</tr>
+				</tbody>
+			</table>
+				</div>
+			</div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+</body>
+</html>

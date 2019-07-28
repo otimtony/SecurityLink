@@ -1,0 +1,23 @@
+{% extends 'content_base.html'%}
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+	{% block content%}
+	<div class="container-fluid">
+		<div class="row" style="padding: 60px 0;">
+			{% for i in image %}
+				<div class="col-sm-6" style="margin-top: 25px;">
+					<a href="{{i.picture.url}}" data-lightbox="photos"><img class="img-fluid" src='{{i.picture.url}}'></a>
+				</div>
+			{% endfor %}
+		
+	</div>	
+	</div>
+	
+		
+	{% endblock%}
+</body>
+</html>

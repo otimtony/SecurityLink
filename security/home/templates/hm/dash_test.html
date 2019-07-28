@@ -1,0 +1,49 @@
+{% extends 'dash_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% block content %}
+	<div class="content" style="margin-top: 7%;">
+		<a href="{% url 'home:add_test' %}"><button class="btn btn-success"><i class="now-ui-icons ui-1_simple-add" style="padding-right:10px; "></i>Add testimonial</button></a>
+		<div class="row">
+			{% for tstmnl in t %}
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+						<div class="col-md-4">
+							
+								<img src="{% if tstmnl.img_profile  %}{{ tstmnl.img_profile.url }}{% else %}{% static 'img/default-avatar.png' %}{% endif %}">
+						</div>
+						<div class="col-md-8">
+							<div><h3>{{tstmnl.name}}</h3></div>
+							<div><p>{{tstmnl.testimonial_desc}}</p>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="card-footer">
+						<div class="" style="float: right; padding-bottom: 10px;">
+							<a href="{% url 'home:del_test' tstmnl.id%}">
+								<button type="button" rel="tooltip" title="Delete Testimonial" class="btn btn-danger btn-round btn-icon btn-icon-mini" data-original-title="Remove">
+			                          			<i class="now-ui-icons ui-1_simple-remove"></i>
+			                          		</button>
+							</a>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			{% endfor%}
+			<div class="col-md-6"></div>			
+		</div>
+	</div>
+{% endblock %}
+
+</body>
+</html>

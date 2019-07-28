@@ -1,0 +1,774 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Security Link</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/sl_logo.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+
+  <!-- lightbox css cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <style type="text/css">
+        #map{
+            width: 100%;
+            height: 350px;
+        }
+        .mapContainer{
+            width:55%;
+            position: relative;
+        }
+        .mapContainer a.direction-link {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 100010;
+            color: #FFF;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 25px;
+            padding: 8px 20px 8px 20px;
+            background: #0094de;
+            background-image: url('direction-icon.png');
+            background-position: left center;
+            background-repeat: no-repeat;
+        }
+        .mapContainer a.direction-link:hover {
+            text-decoration: none;
+            background: #0072ab;
+            color: #FFF;
+            background-image: url('direction-icon.png');
+            background-position: left center;
+            background-repeat: no-repeat;
+        }
+        </style>
+        <script type="application/x-javascript">
+            addEventListener("load", function () {
+                setTimeout(hideURLbar, 0);
+            }, false);
+
+            function hideURLbar() {
+                window.scrollTo(0, 1);
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpc0HyfR7ue4X2vckTZCiRFpj2cxLSxGs"></script>
+        
+        <script>
+
+
+        var myCenter = new google.maps.LatLng(0.3186122, 32.5492422);
+        function initialize(){
+            var mapProp = {
+                center:myCenter,
+                zoom:12,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map"),mapProp);
+
+            var marker = new google.maps.Marker({
+                position:myCenter,
+                map: map,
+                title: 'Security Link Ltd'
+            });
+            var address ="Security Link Ltd";
+            google.maps.event.addListener(marker,'click',function() {
+                var infowindow = new google.maps.InfoWindow();
+                infowindow.setContent(address);
+                infowindow.open(map, marker);
+            });
+
+            marker.setMap(map);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
+  <!-- =======================================================
+    Theme Name: BizPage
+    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container-fluid">
+
+      <div "id="logo" class="pull-left">
+        <!-- <h1><a href="#intro" class="scrollto">Kamwe</a></h1> -->
+        <!-- Uncomment below if you prefer to use an image logo -->
+         <a href="#intro"><img style="width: 220px; margin-top:-15px;" src="{% static 'img/sl_logo.png' %}" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Job Mart</a></li>
+          <li><a href="{% url 'home:register' %}">Register</a></li>
+          <li><a href="{% url 'home:vid_gallery'%}">Videos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header>
+
+  <!-- #header -->
+  {% block content%}
+
+
+  <!--==========================
+    Intro Section
+  ============================-->
+
+
+
+  <section id="intro" >
+    <div class="intro-container" style="margin-top: 6%;">
+      <div id="introCarousel" class="carousel  slide " data-ride="carousel" >
+
+        <ol class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox" >
+
+          <div class="carousel-item active" style="opacity: 1;">
+            <div class="carousel-background"><img src="{% static 'img/intro-carousel/1.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>We are professional</h2>
+                <p>The CEO UGANDA meets the CEO Security Link.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carousel-background"><img src="{% static 'img/intro-carousel/2.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Our Home</h2>
+                <p>Security Link Offices, Plot 126 Sentema Road - BULANGE MENGO</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carousel-background"><img src="{% static 'img/intro-carousel/3.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Service with results</h2>
+                <p>This is where all the documents are processed and visas received to be issued to successful candidates.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carousel-background"><img src="{% static 'img/intro-carousel/8.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Let us Transform You</h2>
+                <p>If you are convinced that finding the right person for any position is critical for the success of your Company, headhunting may be the right solution for you. (Other forms of recruitment may prove to be ineffective  and time consuming.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- #intro -->
+
+  <main id="main">
+
+  
+    <section id="about">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>About Us</h3>
+          <p>
+            Security link ltd is a general recruitment company recognized by Ministry of Labor Uganda and founded in 2009. The business provides security services and other job opportunities in all avenues for our heavily unemployed Ugandans. We focus in external deployment in all neighbouring countries and beyond like United Arab Emirates, Afghanistan, Qatar, Australia, Credestan and all other countries with available opportunities. The business is divided into two divisions, namely General Recruitment for external deployment and security services for establishments. Our choice of business is promising due to the increased public safety and security awareness, the general economic upswing and not least the current terrorist activities. Security link limited grows its employee base of security services and other job opportunities in all avenues carefully based on client contracts.
+          </p>
+        </header>
+
+        <div class="row about-cols">
+
+          <div class="col-md-4 wow fadeInUp">
+            <div class="about-col">
+              <div class="img">
+                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+              </div>
+              <h2 class="title" style="padding-top: 50px;"><a href="#">Our Mission</a></h2>
+              <p>
+                To exploit opprtunities in the labor export industry
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="about-col">
+              <div class="img">
+                <div class="icon"><i class="ion-ios-list-outline"></i></div>
+              </div>
+              <h2 class="title" style="padding-top: 50px;"><a href="#">Our Philosophy</a></h2>
+              <p>
+                If you want to prosper for one year, grow corn. If you want  to prosper for ten years, grow trees. If  you want to prosper for a life time grow people.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="about-col">
+              <div class="img">
+                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+              </div>
+              <h2 class="title" style="padding-top: 50px;"><a href="#">Our Vision</a></h2>
+              <p>
+                Reduce unemployment for better livelihoods
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #about -->
+
+     <!--==========================
+      Featured Services Section
+    ============================-->
+    <section id="featured-services">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a href="">Our Objectives</a></h4>
+            <p class="description">
+              a)  To estabish and carry on business of job creation within and out of the country and to provide civic training to the unemployed and other members of the public.
+              <br>
+              <br>
+
+              b) To carry on as business as principles, job agents, brokers or commision agents to members of the public of all levels seeking for employment.
+              <br>
+              <br>
+
+              c) To provide security services to establishments of all kinds.
+            </p>
+          </div>
+
+          <div class="col-lg-6 box box-bg">
+            <i class="ion-ios-heart-outline"></i>
+            <h4 class="title"><a href="">Our Values</a></h4>
+            <p class="description">
+              Security ltd has adopted specific corporate values that are the yardstick by which we conduct all of our business operations. These values let our clients know what they can expect from Security Link ltd. These values are:
+
+              <br>
+              <br>
+
+              Service
+              <br>
+              Agility
+              <br>
+              Integrity
+              <br>
+              Transparency
+              <br>
+              Accountability
+              <br>
+              Respect for Law
+              <br>
+              <br>
+
+              To know more about us, please send us a mail at securitylinkug@gmail.com
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+
+        <header class="section-header wow fadeInUp">
+          <h3>Services</h3>
+          <p>Security link ltd provides recruitment services and well trained guards to all kinds of firms for the following purposes.</p>
+        </header>
+
+        <div class="row">
+          {% for s in services %}
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon">
+              <i class="icon ion-ios-gear"></i>
+            </div>
+            <h4 class="title"><a href="">{{ s.name }}</a></h4>
+            <p class="description">{{ s.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- #services -->
+
+    <!--==========================
+      Call To Action Section
+    ============================-->
+    <section id="call-to-action" class="wow fadeIn">
+
+      <header class="section-header wow fadeInUp"> <h3>Gallery</h3> </header>
+        
+          <div class="container-fluid photo-gallery" style="padding: 0 30px;">    
+              <br>
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                  <nav class="d-none d-md-block">
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="true">All</a>
+                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-interview" role="tab" aria-controls="nav-interview" aria-selected="false">Interviews</a>
+                      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-briefing" role="tab" aria-controls="nav-briefing" aria-selected="false">Briefings</a>
+                      <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-depart" role="tab" aria-controls="nav-depart" aria-selected="false">Departure</a>
+                      <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-work" role="tab" aria-controls="nav-work" aria-selected="false">At work</a>
+                    </div>
+                  </nav>
+                </div>
+                <div class="col-md-3"></div>
+              </div>   
+              
+              <br>
+
+              <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane active"  id="nav-all">
+                      <div class="row">
+                        {% for p in pics %}
+                          <div class="col-md-3 d-none d-md-block" style="margin: 0px; padding: 0px;">
+                            <a href="{{p.picture.url}}" data-lightbox="photos"><img class="" src='{{p.picture.url}}' style="width: 100%; height: 200px; object-fit: cover; object-position: center;"></a>
+                          </div>
+                        {% endfor%}
+                          <div class=" col-sm-12 d-block d-md-none" style="text-align: center;">
+                            <a href="{% url 'home:gallery' %}"><button class="btn btn-danger">View Gallery</button></a>
+                          </div>  
+                      </div>
+                      
+
+                  </div>
+                  <div class="tab-pane" role="tabpanel" aria-labelledby="nav-profile-tab" id="nav-interview">
+                      
+                      <div class="row">
+                        {% for q in pics_interview %}
+                          <div class="col-md-3" style="margin: 0px; padding: 0px;">
+                            <a href="{{q.picture.url}}" data-lightbox="photos"><img class="img-fluid" src='{{q.picture.url}}' style="width: 100%; height: 200px; object-fit: cover; object-position: center;"></a>
+                          </div>
+                            
+                        {% endfor%}  
+                      </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" aria-labelledby="nav-contact-tab" id="nav-briefing">
+                    
+                    <div class="row">
+                        {% for p in pics_briefing %}
+                          <div class="col-md-3" style="margin: 0px; padding: 0px;">
+                            <a href="{{p.picture.url}}" data-lightbox="photos"><img class="img-fluid" src='{{p.picture.url}}' style="width: 100%; height: 200px; object-fit: cover; object-position: center;"></a>
+                          </div>
+                            
+                        {% endfor%}  
+                      </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" aria-labelledby="nav-about-tab" id="nav-depart">
+                      
+                      <div class="row" style="margin: 0px; padding: 0px;">
+                        {% for p in pics_departures %}
+                          <div class="col-md-3">
+                            <a href="{{p.picture.url}}" data-lightbox="photos"><img class="img-fluid" src='{{p.picture.url}}' style="width: 100%; height: 200px; object-fit: cover; object-position: center;"></a>
+                          </div>     
+                        {% endfor%}  
+                      </div>
+                  </div>
+                  <div class="tab-pane " role="tabpanel" aria-labelledby="nav-home-tab" id="nav-work">
+                    
+                    <div class="row">
+                        {% for p in pics_work %}
+                          <div class="col-md-3" style="margin: 0px; padding: 0px;">
+                            <a href="{{p.picture.url}}" data-lightbox="photos"><img class="img-fluid" src='{{p.picture.url}}' style="width: 100%; height: 200px; object-fit: cover; object-position: center;"></a>
+                          </div>
+                            
+                        {% endfor%}  
+                      </div>
+                  </div>
+              </div>
+
+              <!-- <div class="tab-content">
+                <div class="tab-pane active" id="nav-all">
+                  <div class="row">
+                        {% for p in pics %}
+                          <div class="col-md-3 d-none d-md-block" style="margin: 0px; padding: 0px;">
+                            <a href="{{p.picture.url}}" data-lightbox="photos"><img class="" src='{{p.picture.url}}' style="width: 100%; height: 200px; object-fit: cover; object-position: center;"></a>
+                          </div>
+                        {% endfor%}
+                          <div class=" col-sm-12 d-block d-md-none" style="text-align: center;">
+                            <a href="{% url 'home:gallery' %}"><button class="btn btn-danger">View Gallery</button></a>
+                          </div>  
+                      </div>
+                </div>
+                <div class="tab-pane" id="nav-interview">
+                  <div class="row">
+                    {% for q in pics_interview %}
+                      <div class="col-md-3" style="margin: 0px; padding: 0px;">
+                        <img class="img-fluid" src='{{q.picture.url}}' style="width: 100%; height: 200px; object-fit: cover; object-position: center;">
+                      </div>
+                        
+                    {% endfor%}  
+                  </div>
+                </div>
+                <div class="tab-pane container" id="menu2">
+                  
+                </div>
+              </div> -->
+              <br>               
+            <!-- </div> -->  
+          </div>
+        <!-- </div> -->   
+    </section><!--call to Action  -->
+
+    <!--==========================
+      Team Section
+    ============================-->
+    <section id="team">
+      <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="section-header wow fadeInUp">
+          <h3>Recent jobs</h3>
+        </div>
+        <div class="row" style="padding-bottom: 10px;">
+          <div class="col-md-4"></div>
+          <div class="col-md-4" style="text-align: center;">
+            <a href="{% url 'home:jobmart' %}" style="color:#ffff;"><button class="btn btn-danger btn-md mt-4" style=" margin-left:5%; border-radius: 25px;">View all Jobs</button></a>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+          {% for j in work %}
+            <div class="col-lg-3 col-md-6 col-wow fadeInUp" style="margin-top: 10px;">
+            <!-- Card -->
+              <div class="card">
+
+                <!-- Card image -->
+                <div class="card-header" style="background-color:#ff4d4d;">
+
+                  <!-- Title -->
+                  <h4 class="card-header-title" style="color: #ffff; text-align: center; margin-top:0;">{{j.location}}</h4>
+                  <!-- Text -->
+
+                </div>
+
+                <!-- Card content -->
+                <div class="card-body card-body-cascade text-center">
+
+                  <!-- Text -->
+                  
+                  <p class="card-text" style="font-size: 20px;">{{j.jobTitle}}: {{j.workers}} </p>
+        
+                  <p class="card-text" style="font-size: 14px;">{{j.job_desc|truncatechars:150}}</p>
+                  <!-- Link -->
+                  <a href="{% url 'home:detail' j.id %}" class="red-text d-flex flex-row-reverse p-2" style="color: #ff3333;">
+                    <p class="waves-effect waves-light">read more<i class="fa fa-angle-double-right ml-2"></i></p>
+                  </a>
+
+                </div>
+                <!-- Card content -->
+
+              </div>
+            <!-- Card -->
+
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section><!-- #team -->
+
+
+    <section id="clients" class="wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Our Clients</h3>
+        </header>
+
+        <div class="owl-carousel clients-carousel">
+          {% for c in clients %}
+          <div class="ml-2 mr-2">
+              <img src='{{c.logo.url}}' style="height: 200px; width: 200px;">
+          </div>
+            
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- #clients -->
+
+    <!--==========================
+      Clients Section
+    ============================-->
+    <section id="testimonials" class="section-bg wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Testimonials</h3>
+        </header>
+
+        <div class="owl-carousel testimonials-carousel">
+          {% for t in tst %}
+          <div class="testimonial-item">
+            
+            <h3>{{t.name}}</h3>
+            <h4>{{t.occupaton}}</h4>
+            <p>
+              <img src="{% static 'img/quote-sign-left.png'%}" class="quote-sign-left" alt="">
+              {{t.testimonial_desc}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- #testimonials -->
+
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" class="section-bg wow fadeInUp">
+      <div class="container">
+
+        <div class="section-header">
+          <h3> Contact Us</h3>
+        </div>
+
+        <div class="row contact-info">
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="ion-ios-location-outline"></i>
+              <h3>Address</h3>
+              <address>Plot 126 Sentema Road, Bulange Mengo, Uganda</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="ion-ios-telephone-outline"></i>
+              <h3>Phone Number</h3>
+              <p><a href="tel:+256702281889"> +256 702 281 889</a></p>
+              <p><a href="tel:+256759985584"> +256 759 985 584</a></p>
+              <p><a href="tel:+256782355134"> +256 782 355 134</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:securitylinkug@gmail.com">securitylinkug@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <h3> Branches </h3>
+        </div>
+
+         <div class="row contact-info">
+          {% for b in branches %}
+          <div class="col-md-4">
+            <div class="contact-address">
+              <img src="https://www.emoji.co.uk/files/twitter-emojis/travel-places-twitter/10943-office-building.png" style="width: 50px; height: 50px; object-position: center; object-fit: cover;">
+              <h3>{{ b.name }}</h3>
+              <address>{{ b.location }}</address>
+              <address>{{ b.contact }}</address>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="form">
+          <div id="errormessage"></div>
+          <form action="" method="post" role="form" class="contactForm">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" value="{% if submitbutton == 'Submit' %} {{ firstname }} {% endif %}" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" value="{% if submitbutton == 'Submit' %} {{ email }} {% endif %}"/>
+                <div class="validation"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" value="{% if submitbutton == 'Submit' %} {{ subject }} {% endif %}"/>
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message" value="{% if submitbutton == 'Submit' %} {{ message }} {% endif %}"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="text-center"><button type="Submit" value="Submit" name="Submit">Send Message</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- #contact -->
+
+    <div id="map"></div>
+
+  </main>
+{% endblock %}
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h4>SECURITYLINK</h4>
+            <p>Security link is a labor export agency that has been in the staffing industry since February 2009 with the objective of providing quality and excellent recruitment and placement services. It has achieved a reputation for efficient and personalized excellent service to meet the staffing needs of various industries in Middle East.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="{% url 'home:login' %}">Dashboard</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Sentema Road <br>
+              Plot 126, Bulange Mengo<br>
+              Kampala, Uganda <br>
+              <strong>Phone:</strong> +256 702 281 889, +256 759 985 584, 0312 106 527<br>
+              <strong>Email:</strong> securitylinkug@gmail.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="https://www.facebook.com/SeclinkUG/" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="https://www.youtube.com/channel/UCOOPIDw8j9NVlv9FcIdMoBg" class="youtube"><i class="fa fa-youtube"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Put your e-mail and click on the button.</p>
+            <form action="" method="post">
+              <input type="email" name="email" disabled=""><input type="submit"  value="Subscribe" disabled="">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>SecurityLink</strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <div id="preloader"></div>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+  
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+  <script src="{% static 'lib/touchSwipe/jquery.touchSwipe.min.js' %}"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+  <!-- light-box cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+</body>
+</html>
